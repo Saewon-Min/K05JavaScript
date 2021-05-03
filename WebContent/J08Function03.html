@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        var param = 100; args = 1;
+
+        document.write("<h2>Call by value</h2>");
+        document.write("초기값 param = "+param + ", args = "+args+"<br>");
+
+        function callByValue(param,args){
+            var temp = param;
+            param = args;
+            args = temp;
+            document.write("함수안의 param = "+param+ ", args = "+args+"<br>");
+        }
+
+        callByValue(param,args);
+        document.write("함수밖의 param = "+param+ ", args = "+args+"<br>");
+
+        document.write("<h2>Call by Reference</h2>");
+        var array = [100,1];
+        document.write("초기값 array[0] = "+array[0] + ", array[1] = "+array[1]+"<br>");
+
+        function callByReference(arr){
+            var temp = param;
+            param = args;
+            args = temp;
+            document.write("함수 안 arr[0] = "+arr[0] + ", arr[1] = "+arr[1]+"<br>");
+        }
+
+        callByReference(array);
+        document.write("함수 밖 array[0] = "+array[0] + ", array[1] = "+array[1]+"<br>");
+
+
+
+
+
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>
