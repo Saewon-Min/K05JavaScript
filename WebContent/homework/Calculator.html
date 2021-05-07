@@ -61,31 +61,11 @@
 
      <script>
         var arr = "";
+
         function insertNum(num){
-            switch(num){
-                case 0: numbtn = document.getElementById("0").value; break;
-                case 1: numbtn = document.getElementById("1").value; break;
-                case 2: numbtn = document.getElementById("2").value; break;
-                case 3: numbtn = document.getElementById("3").value; break;
-                case 4: numbtn = document.getElementById("4").value; break;
-                case 5: numbtn = document.getElementById("5").value; break;
-                case 6: numbtn = document.getElementById("6").value; break;
-                case 7: numbtn = document.getElementById("7").value; break;
-                case 8: numbtn = document.getElementById("8").value; break;
-                case 9: numbtn = document.getElementById("9").value; break;
-                case "/": numbtn = document.getElementById("/").value; break;
-                case "+": numbtn = document.getElementById("+").value; break;
-                case "-": numbtn = document.getElementById("-").value; break;
-                case "x": numbtn = document.getElementById("x").value; break;
-                case "=": numbtn = document.getElementById("=").value; break;
-                case ".": numbtn = document.getElementById(".").value; break;
-
-                case "backspace": numbtn = document.getElementById("backspace").value;break;
-                case "clear": numbtn = document.getElementById("clear").value;break;
-
-            }
-
-            
+            var numbtn = "";    
+            numbtn = document.getElementById(num).value;
+                
             var display = document.getElementById("lcd");
             if(arr[0] == "0"){
                 arr = "";
@@ -107,49 +87,19 @@
             }else{
                 arr += numbtn;
                 display.value = arr;
+
                 if(numbtn == '='){
-                    if(arr.includes('+')){
-                        var sp = arr.split('+');
-                        //document.write(sp);
-                        if(numbtn=='='){
-                        var result = parseFloat(sp[0]) + parseFloat(sp[1]);
-                        }
-                        display.value = result;
-                        arr = "";
-                    }else if(arr.includes('-')){
-                        var sp = arr.split('-');
-                        //document.write(sp);
-                        if(numbtn=='='){
-                        var result = parseFloat(sp[0]) - parseFloat(sp[1]);
-                        }
-                        display.value = result;
-                        arr = "";
-                    }else if(arr.includes('x')){
-                        var sp = arr.split('x');
-                        //document.write(sp);
-                        if(numbtn=='='){
-                        var result = parseFloat(sp[0]) * parseFloat(sp[1]);
-                        }
-                        display.value = result;
-                        arr = "";
-                    }else if(arr.includes('/')){
-                        var sp = arr.split('/');
-                        //document.write(sp);
-                        if(numbtn=='='){
-                        var result = parseFloat(sp[0]) / parseFloat(sp[1]);
-                        }
-                        display.value = result;
-                        arr = "";
+                    var result = "";
+                    for(var i=0; i<arr.length-1;i++){
+                        result += arr[i];
                     }
-            
+                    result = eval(result);
+                    display.value = result;
+                    arr = "";
                 }
-            
+                
             }
-
         }
-
-        
-
      </script>
 
 </head>
