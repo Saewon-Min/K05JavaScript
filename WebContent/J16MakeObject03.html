@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J16MakeObject01.html</title>
+
+    <script>
+        /*
+        객체 생성 방법3
+            : 생성자를 이용하여 선언한다.
+            이때 멤버변수와 멤버메소드를 선언할 때 반드시 this를 
+            사용해야한다.
+        */
+        var Account = function(owner,code,balance){
+            /*
+            생성자를 통한 객체 생성시 반드시 this를 붙여줘야한다.
+            this가 없으면 undefined가 된다.Account
+            */
+            this.owner = owner; 
+            this.code = code;
+            this.balance = balance;
+        
+            // 멤버메소드도 this가 없으면 error가 발생된다.
+            this.inquiry = function(){ // 잔고확인
+                return this.balance;
+            }
+            this.deposit = function(money){ // 입금처리
+                return this.balance += money;
+            } 
+            this.withdraw = function(money){ // 출금처리
+                return this.balance -= money;
+                return money;
+            }
+            return this;
+        };
+        
+    </script>
+
+</head>
+<body>
+
+    <h2>생성자를 통한 사용자 객체 만들기</h2>
+    <script>
+        var account = new Account('코스모','123456-789',150000);
+
+        // 멤버변수 출력
+        document.write("account객체 => <br>");
+        document.write("소유자 : "+account.owner+" , ");
+        document.write("계좌번호 : "+account.code+" , ");
+        document.write("잔액 : "+account.balance+"<br>");
+
+        // 멤버메소드 호출
+        account.deposit(9000);
+        document.write("9000원 입금 후 잔액 : "+account.inquiry() +"<br>");
+        account.withdraw(20000);
+        document.write("20000원 출금 후 잔액 : "+account.inquiry() +"<br>");
+
+
+    </script>
+
+</body>
+</html>
