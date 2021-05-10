@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    
+    <!-- 
+        초록 : #70C738
+        회색 : #7B7B7B
+        검정 : #373737
+        주황 : #FA960A
+        바탕색 : #DDDDDD
+        
+        자바스크립트 추가
+     -->
+     <style>
+       
+        table{
+            background-color: #DDDDDD;
+            border: 1px solid #c7c7c7;
+            border-radius: 10px; /* table의 모서리를 둥글게 */
+            
+        }
+         
+        #lcd{  /* tr태그 중 첫번째의 input태그 */
+            border-radius: 10px;
+            background-color: #70C738;
+            text-align: right;  /* 텍스트를 오른쪽 끝으로 배치 */
+            font-size: 30px;
+            font-weight: bold;
+            color: #373737;           
+            width: 425px; height: 70px;
+            padding: 10px;
+            border: 1px solid #70C738;
+            
+        }       
+
+        input[type=button]{
+            border-radius: 10px; 
+            height: 50px;
+            border: 1px solid #dddddd;
+            font-size: 1.5em;
+            color: white;
+        }
+        .key1{
+            width: 100px;
+            background-color: #373737;
+        }
+
+        .key2{
+            width: 100px;
+            background-color: #FA960A;
+
+        }
+        .btn{
+            width: 212px;
+            background-color: #7B7B7B;
+        }
+
+     </style>
+
+     <script>
+        var arr = "";
+
+        function insertNum(num){
+            var numbtn = "";    
+            numbtn = document.getElementById(num).value;
+                
+            var display = document.getElementById("lcd");
+            if(arr[0] == "0"){
+                arr = "";
+            }else if(numbtn == 'C'){
+                display.value = '0';
+                arr = "";
+            }else if(numbtn == 'BackSpace'){
+                
+                var cnt=1;
+                var arr2 = "";
+                
+                for(var i=0; i<arr.length-cnt;i++){
+                    arr2 += arr[i];
+                }
+                arr = arr2;
+                display.value = arr;
+                cnt++;
+            
+            }else{
+                arr += numbtn;
+                display.value = arr;
+
+                if(numbtn == '='){
+                    var result = "";
+                    for(var i=0; i<arr.length-1;i++){
+                        result += arr[i];
+                    }
+                    result = eval(result);
+                    display.value = result;
+                    arr = "";
+                }
+                
+            }
+        }
+     </script>
+
+</head>
+<body>
+
+    <h2 >계산기</h2>
+
+    <table cellspacing="7px" > 
+        
+        <tr  > 
+            <th colspan="4"> <!-- 4개의 열을 합침 -->
+                <input type="text" value="0" id="lcd"> <!-- text를 입력하는 input태그 -->
+            </th>
+            
+        </tr>
+        
+        
+        <tr >
+            <!-- type이 버튼인 input태그 -->
+            <th colspan="2">
+                <input type="button" value="BackSpace" class="btn" id="backspace" onclick="insertNum('backspace');"></th>
+            <th colspan="2">
+                <input type="button"  value="C" class="btn" id="clear" onclick="insertNum('clear');">
+                
+            </th>
+        </tr>
+        <tr >
+            <th><input type="button" value="1" class="key1" id="1" onclick="insertNum(1);"></th>
+            <th><input type="button" value="2" class="key1" id="2" onclick="insertNum(2);"></th>
+            <th><input type="button" value="3" class="key1" id="3" onclick="insertNum(3);"></th>
+            <th ><input type="button" value="/" class="key2" id="/" onclick="insertNum('/');"></th>
+        </tr>
+        <tr >
+            <th><input type="button" value="4" class="key1" id="4" onclick="insertNum(4);"></th>
+            <th><input type="button" value="5" class="key1" id="5" onclick="insertNum(5);"></th>
+            <th><input type="button" value="6" class="key1" id="6" onclick="insertNum(6);"></th>
+            <th ><input type="button" value="x" class="key2" id="x" onclick="insertNum('x');"></th>
+        </tr>
+        <tr >
+            <th><input type="button" value="7" class="key1" id="7" onclick="insertNum(7);"></th>
+            <th><input type="button" value="8" class="key1" id="8" onclick="insertNum(8);"></th>
+            <th><input type="button" value="9" class="key1" id="9" onclick="insertNum(9);"></th>
+            <th ><input type="button" value="+" class="key2" id="+" onclick="insertNum('+');"></th>
+        </tr>
+        <tr >
+            <th><input type="button" value="=" class="key1" id="=" onclick="insertNum('=');"></th>
+            <th><input type="button" value="0" class="key1" id="0" onclick="insertNum(0);"></th>
+            <th><input type="button" value="." class="key1" id="." onclick="insertNum('.');"></th>
+            <th ><input type="button" value="-" class="key2" id="-" onclick="insertNum('-');"></th>
+        </tr>
+        
+    </table>
+
+</body>
+</html>
